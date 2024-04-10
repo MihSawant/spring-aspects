@@ -1,4 +1,5 @@
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import services.HelloService;
 
 public class Main {
     public static void main(String[] args) {

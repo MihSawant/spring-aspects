@@ -5,11 +5,15 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
 
+   <bean id="helloService" class="services.HelloService"/>
+   <bean id="helloServiceAspect" class="services.HelloServiceAspect"/>
    <aop:aspectj-autoproxy/>
+   <aop:config>
+      <aop:aspect id="helloAspect" ref="helloServiceAspect">
+         <aop:pointcut id="pointBefore" expression="execution(* services.*.*(..))"/>
+         <aop:before method="hello" pointcut-ref="pointBefore"/>
+      </aop:aspect>
+   </aop:config>
 
-   <beans>
-      <bean id="helloService" class="HelloService">
-      </bean>
-   </beans>
 
 </beans>

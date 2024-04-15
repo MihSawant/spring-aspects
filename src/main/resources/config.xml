@@ -7,6 +7,18 @@
 
    <bean id="helloService" class="services.HelloService"/>
    <bean id="helloServiceAspect" class="services.HelloServiceAspect"/>
+   <bean id="product" class="question.Product">
+      <property name="pid" value="1"/>
+      <property name="name" value="mobile"/>
+      <property name="order">
+         <bean id="order" class="question.Order">
+            <property name="orderId" value="1111"/>
+         </bean>
+      </property>
+   </bean>
+   <bean id="employee" class="question.Employee">
+      <constructor-arg ref="product"/>
+   </bean>
    <aop:aspectj-autoproxy/>
    <aop:config>
       <aop:aspect id="helloAspect" ref="helloServiceAspect">
